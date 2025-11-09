@@ -1,80 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+  --accent: #00e0ff;
+  --bg-dark: #0a0a0a;
+  --bg-light: #111;
+  --text: #e0e0e0;
+}
+
+/* Global */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0a0a0a;
-  color: #00ffff;
+  background: radial-gradient(circle at top, var(--bg-dark), #000);
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
+/* Header */
 header {
-  background-color: #001f33;
+  background: linear-gradient(135deg, #0d0d0d, #111);
+  border-bottom: 2px solid var(--accent);
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
+  padding: 1.5rem 0;
   text-align: center;
-  padding: 1.5em 0;
-  border-bottom: 2px solid #00ffff;
 }
 
-h1 {
-  margin: 0;
-  font-size: 2.5em;
-  animation: glow 3s infinite alternate;
+header h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
+/* Navigation */
 nav {
-  margin-top: 10px;
+  margin-top: 0.8rem;
 }
 
 nav a {
-  color: #00ffff;
-  margin: 0 15px;
+  color: var(--text);
+  margin: 0 1rem;
   text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-nav a:hover, nav a.active {
-  color: #00cccc;
-  text-decoration: underline;
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-.section {
-  padding: 50px 20px;
-  max-width: 900px;
-  margin: auto;
+nav a:hover {
+  color: var(--accent);
 }
 
-h2 {
-  color: #00ffff;
-  border-bottom: 2px solid #00ffff;
-  padding-bottom: 5px;
+nav a:hover::after {
+  transform: scaleX(1);
 }
 
-.event {
-  background: #001f33;
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
+/* Active link */
+nav a.active {
+  color: var(--accent);
 }
 
-footer {
-  background-color: #001f33;
+/* Section */
+section {
+  padding: 4rem 2rem;
   text-align: center;
-  padding: 15px;
-  border-top: 2px solid #00ffff;
-  color: #00cccc;
 }
 
-a {
-  color: #00ffff;
+section h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-shadow: 0 0 8px var(--accent);
 }
 
-a:hover {
-  color: #00cccc;
+/* Cards for events or highlights */
+.card {
+  background: var(--bg-light);
+  border: 1px solid rgba(0, 224, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1rem;
+  display: inline-block;
+  width: 280px;
+  box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Glowing animation */
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #00ffff; }
-  50% { text-shadow: 0 0 20px #00ffff; }
-  100% { text-shadow: 0 0 5px #00ffff; }
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.3);
+}
+
+.card h3 {
+  color: var(--accent);
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 25px;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent);
+}
+
+/* Contact form */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+form input:focus, form textarea:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent);
+  }
+  50% {
+    text-shadow: 0 0 16px var(--accent), 0 0 32px var(--accent);
+  }
+}
+
+.glow-text {
+  animation: pulse-glow 2s infinite;
 }
