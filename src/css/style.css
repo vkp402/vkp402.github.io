@@ -1,45 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Roboto:wght@300;400;700&display=swap');
+/* ======= FUTURISTIC ROBOTICS THEME v2 ======= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
   --accent: #00e0ff;
-  --bg-dark: #0a0a0a;
-  --bg-light: #111;
+  --secondary: #ff00a6;
+  --bg-dark: #050505;
   --text: #e0e0e0;
 }
 
-/* Global */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global styling */
 body {
-  background: radial-gradient(circle at top, var(--bg-dark), #000);
-  color: var(--text);
-  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text);
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+              url('assets/bg-robotics.jpg') center/cover fixed no-repeat;
   overflow-x: hidden;
 }
 
 /* Header */
 header {
-  background: linear-gradient(135deg, #0d0d0d, #111);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(0, 0, 0, 0.7);
   border-bottom: 2px solid var(--accent);
-  box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
-  padding: 1.5rem 0;
-  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: headerFade 1s ease-in-out;
 }
 
-header h1 {
+@keyframes headerFade {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 55px;
+  height: 55px;
+  margin-right: 10px;
+  transition: transform 0.4s ease;
+}
+
+.logo:hover img {
+  transform: rotate(360deg);
+}
+
+.logo span {
   font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--accent);
   text-shadow: 0 0 10px var(--accent);
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
 }
 
 /* Navigation */
-nav {
-  margin-top: 0.8rem;
-}
-
 nav a {
   color: var(--text);
   margin: 0 1rem;
@@ -61,54 +93,65 @@ nav a::after {
   transition: transform 0.3s ease;
 }
 
-nav a:hover {
-  color: var(--accent);
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
-}
-
-/* Active link */
+nav a:hover,
 nav a.active {
   color: var(--accent);
 }
 
-/* Section */
+nav a:hover::after,
+nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* Hero / Section */
 section {
-  padding: 4rem 2rem;
   text-align: center;
+  padding: 5rem 2rem;
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 section h2 {
   font-family: 'Orbitron', sans-serif;
   color: var(--accent);
-  margin-bottom: 2rem;
   font-size: 2rem;
   text-shadow: 0 0 8px var(--accent);
 }
 
-/* Cards for events or highlights */
+section p {
+  max-width: 700px;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Cards (for Events or Projects) */
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .card {
-  background: var(--bg-light);
+  background: rgba(15, 15, 15, 0.85);
   border: 1px solid rgba(0, 224, 255, 0.2);
   border-radius: 12px;
   padding: 2rem;
   margin: 1rem;
-  display: inline-block;
   width: 280px;
-  box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(5px);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(0, 224, 255, 0.3);
-}
-
-.card h3 {
-  color: var(--accent);
-  font-family: 'Orbitron', sans-serif;
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 224, 255, 0.4);
 }
 
 /* Buttons */
@@ -132,7 +175,7 @@ section h2 {
   box-shadow: 0 0 15px var(--accent);
 }
 
-/* Contact form */
+/* Contact Form */
 form {
   max-width: 500px;
   margin: 0 auto;
@@ -145,13 +188,15 @@ form input, form textarea {
   margin: 0.5rem 0;
   border: none;
   border-radius: 6px;
-  background: #1a1a1a;
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text);
   font-size: 1rem;
+  transition: box-shadow 0.3s ease;
 }
 
 form input:focus, form textarea:focus {
-  outline: 2px solid var(--accent);
+  outline: none;
+  box-shadow: 0 0 10px var(--accent);
 }
 
 /* Footer */
@@ -159,34 +204,44 @@ footer {
   text-align: center;
   padding: 2rem;
   font-size: 0.9rem;
-  color: #777;
+  color: #aaa;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.8);
 }
 
-/* Glow animation */
-@keyframes pulse-glow {
-  0%, 100% {
-    text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent);
+/* Floating particles animation background */
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-20px) translateX(10px); }
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 6s infinite alternate ease-in-out;
+}
+
+.particle:nth-child(2) { left: 20%; top: 40%; animation-delay: 1s; }
+.particle:nth-child(3) { left: 70%; top: 80%; animation-delay: 2s; }
+.particle:nth-child(4) { left: 50%; top: 60%; animation-delay: 3s; }
+.particle:nth-child(5) { left: 10%; top: 20%; animation-delay: 0.5s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem;
   }
-  50% {
-    text-shadow: 0 0 16px var(--accent), 0 0 32px var(--accent);
+  nav a {
+    display: inline-block;
+    margin: 0.5rem;
+  }
+  .card-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
-
-  animation: pulse-glow 2s infinite;
-}
-/* Global Background */
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-  color: var(--text);
-
-  /* --- Background setup --- */
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-    url('assets/bg-robotics.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
