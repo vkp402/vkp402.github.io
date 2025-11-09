@@ -1,5 +1,4 @@
-
-/* ======= FUTURISTIC ROBOTICS THEME v2 ======= */
+/* ======= FUTURISTIC ROBOTICS THEME v3 (Clickable Logo + Fixed Footer) ======= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -18,6 +17,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  padding-bottom: 60px; /* Avoid content hiding behind footer */
   font-family: 'Roboto', sans-serif;
   color: var(--text);
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
@@ -45,7 +45,7 @@ header {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Logo */
+/* Logo - now clickable */
 .logo {
   display: flex;
   align-items: center;
@@ -200,14 +200,26 @@ form input:focus, form textarea:focus {
   box-shadow: 0 0 10px var(--accent);
 }
 
-/* Footer */
+/* Footer - fixed at bottom */
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   font-size: 0.9rem;
   color: #aaa;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 /* Floating particles animation background */
