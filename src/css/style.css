@@ -187,3 +187,20 @@ footer {
   background: rgba(0, 255, 255, 0.2);
   box-shadow: 0 0 20px #00ffff;
 }
+.contact-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.github-icon {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.github-icon:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px #00ffff);
+}
