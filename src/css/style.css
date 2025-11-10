@@ -1,124 +1,109 @@
-/* === Global Reset === */
+/* --- Global Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
 }
 
-/* === Body Styling === */
 body {
-  background: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf1596?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
+  color: #ffffff;
   overflow-x: hidden;
 }
 
-/* === Navigation Bar === */
+/* --- Navigation Bar --- */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 1rem 2rem;
-  position: sticky;
+  padding: 20px 60px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(6px);
 }
 
-nav .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #00e5ff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+nav h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8em;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
 }
 
 nav ul {
-  list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 30px;
+  list-style: none;
 }
 
 nav ul li a {
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
   font-weight: 500;
+  transition: 0.3s;
   position: relative;
 }
 
 nav ul li a::after {
   content: '';
   position: absolute;
-  width: 0%;
+  width: 0;
   height: 2px;
-  bottom: -4px;
   left: 0;
-  background-color: #00e5ff;
-  transition: width 0.3s;
+  bottom: -5px;
+  background: #00ffff;
+  transition: 0.4s;
 }
 
 nav ul li a:hover::after {
   width: 100%;
 }
 
-/* === Section Styling === */
+nav ul li a:hover {
+  color: #00ffff;
+}
+
+/* --- Section Styling --- */
 section {
-  padding: 6rem 10%;
+  padding: 120px 80px;
   min-height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 }
 
-h1, h2 {
-  color: #00e5ff;
-  text-shadow: 0 0 15px #00e5ff;
+section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5em;
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff;
+  margin-bottom: 20px;
 }
 
-p {
+section p {
   max-width: 800px;
-  line-height: 1.7;
-  margin-top: 1rem;
-  font-size: 1.1rem;
+  line-height: 1.8;
+  font-size: 1.1em;
+  color: #e0e0e0;
 }
 
-/* === Floating Social Icons === */
-.social-icons {
-  position: fixed;
-  top: 50%;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transform: translateY(-50%);
-  z-index: 1000;
-}
-
-.social-icons a {
-  color: #00e5ff;
-  font-size: 1.8rem;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.social-icons a:hover {
-  transform: scale(1.2);
-  color: #fff;
-}
-
-/* === Floating Robot Image === */
-.robot-float {
+/* --- Floating Robot --- */
+.robot {
   position: fixed;
   bottom: 20px;
   left: 20px;
   width: 120px;
-  height: auto;
-  animation: float 4s ease-in-out infinite;
-  z-index: 900;
+  height: 120px;
+  background: url('https://cdn-icons-png.flaticon.com/512/4712/4712101.png') no-repeat center/contain;
+  animation: floatRobot 4s ease-in-out infinite;
+  z-index: 1000;
 }
 
-/* === Float Animation === */
-@keyframes float {
+@keyframes floatRobot {
   0%, 100% {
     transform: translateY(0);
   }
@@ -127,11 +112,44 @@ p {
   }
 }
 
-/* === Footer === */
+/* --- Cool Scroll Animation --- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeInUp 1s ease both;
+}
+
+/* --- Buttons --- */
+button {
+  background: #00ffff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00bfbf;
+  box-shadow: 0 0 20px #00ffff;
+  transform: scale(1.05);
+}
+
+/* --- Footer --- */
 footer {
   text-align: center;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ccc;
 }
