@@ -1,259 +1,260 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap');
+/* === ROBOTICS THEME CSS ===
+   Author: GPT-5
+   Description: Futuristic neon robotics theme with animations and floating bots
+*/
+
+/* ---- GLOBAL STYLES ---- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;700&display=swap');
 
 :root {
-  --accent: #00e0ff;
-  --secondary: #ff00a6;
-  --bg-dark: #050505;
-  --text: #e0e0e0;
+  --primary-color: #00ffff;
+  --secondary-color: #ff00ff;
+  --bg-dark: #050510;
+  --text-light: #e0e0ff;
+  --glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
 }
 
-/* Smooth scrolling */
-html {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
-/* Global styling */
 body {
-  margin: 0;
-  padding: 0;
-  padding-bottom: 60px; /* Avoid content hiding behind footer */
-  font-family: 'Roboto', sans-serif;
-  color: var(--text);
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-              url('assets/bg-robotics.jpg') center/cover fixed no-repeat;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--text-light);
+  background: url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1920&q=80') 
+              no-repeat center center fixed;
+  background-size: cover;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Header */
+/* Dark overlay for better readability */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+}
+
+/* ---- HEADER ---- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  background: rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid var(--accent);
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(8px);
-  animation: headerFade 1s ease-in-out;
 }
 
-@keyframes headerFade {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Logo - now clickable */
-.logo {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.logo img {
-  width: 55px;
-  height: 55px;
-  margin-right: 10px;
-  transition: transform 0.4s ease;
-}
-
-.logo:hover img {
-  transform: rotate(360deg);
-}
-
-.logo span {
+header h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent);
+  font-size: 2rem;
+  color: var(--primary-color);
+  text-shadow: var(--glow);
+  animation: pulse 3s infinite alternate;
 }
 
-/* Navigation */
+@keyframes pulse {
+  from { text-shadow: var(--glow); }
+  to { text-shadow: 0 0 30px var(--secondary-color), 0 0 60px var(--secondary-color); }
+}
+
+/* ---- NAVIGATION ---- */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
 nav a {
-  color: var(--text);
-  margin: 0 1rem;
   text-decoration: none;
-  font-weight: 600;
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: 1.1rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 nav a::after {
   content: '';
   position: absolute;
-  left: 0;
   bottom: -5px;
-  width: 100%;
+  left: 0;
+  width: 0%;
   height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+  background: var(--primary-color);
+  box-shadow: var(--glow);
+  transition: width 0.3s;
 }
 
-nav a:hover,
-nav a.active {
-  color: var(--accent);
+nav a:hover {
+  color: var(--primary-color);
 }
 
-nav a:hover::after,
-nav a.active::after {
-  transform: scaleX(1);
+nav a:hover::after {
+  width: 100%;
 }
 
-/* Hero / Section */
+/* ---- SECTIONS ---- */
 section {
+  padding: 5rem 10%;
   text-align: center;
-  padding: 5rem 2rem;
-  animation: fadeUp 1s ease;
-}
-
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(30px);}
-  to {opacity: 1; transform: translateY(0);}
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 section h2 {
   font-family: 'Orbitron', sans-serif;
-  color: var(--accent);
-  font-size: 2rem;
-  text-shadow: 0 0 8px var(--accent);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-shadow: var(--glow);
 }
 
 section p {
-  max-width: 700px;
-  margin: 1rem auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #ccc;
-}
-
-/* Cards (for Events or Projects) */
-.card-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: rgba(15, 15, 15, 0.85);
-  border: 1px solid rgba(0, 224, 255, 0.2);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 1rem;
-  width: 280px;
-  text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  backdrop-filter: blur(5px);
-}
-
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 0 30px rgba(0, 224, 255, 0.4);
-}
-
-/* Buttons */
-.button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background: transparent;
-  border: 2px solid var(--accent);
-  border-radius: 25px;
-  color: var(--accent);
-  font-weight: 600;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.button:hover {
-  background: var(--accent);
-  color: #000;
-  box-shadow: 0 0 15px var(--accent);
-}
-
-/* Contact Form */
-form {
-  max-width: 500px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 800px;
   margin: 0 auto;
-  text-align: left;
+  color: #cfcfff;
 }
 
+/* ---- BUTTONS ---- */
+button, .btn {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+button:hover, .btn:hover {
+  background: var(--primary-color);
+  color: var(--bg-dark);
+  box-shadow: 0 0 30px var(--secondary-color), 0 0 60px var(--secondary-color);
+}
+
+/* ---- CONTACT FORM ---- */
 form input, form textarea {
   width: 100%;
   padding: 0.8rem;
   margin: 0.5rem 0;
-  border: none;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  font-size: 1rem;
-  transition: box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--text-light);
+  font-family: 'Rajdhani', sans-serif;
+  border-radius: 4px;
 }
 
 form input:focus, form textarea:focus {
   outline: none;
-  box-shadow: 0 0 10px var(--accent);
+  box-shadow: var(--glow);
 }
 
-/* Footer - fixed at bottom */
+/* ---- FOOTER ---- */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-top: 1px solid var(--primary-color);
   color: #aaa;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
-  z-index: 999;
-  animation: fadeIn 1s ease;
+  font-size: 0.9rem;
 }
 
+/* ---- ANIMATIONS ---- */
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating particles animation background */
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-20px) translateX(10px); }
-}
-
-.particle {
+/* ---- FLOATING BOTS ---- */
+.floating-bot {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--primary-color) 20%, transparent 70%);
   border-radius: 50%;
-  opacity: 0.5;
-  animation: float 6s infinite alternate ease-in-out;
+  animation: floatBot 6s infinite ease-in-out alternate;
+  filter: blur(1px);
+  opacity: 0.8;
 }
 
-.particle:nth-child(2) { left: 20%; top: 40%; animation-delay: 1s; }
-.particle:nth-child(3) { left: 70%; top: 80%; animation-delay: 2s; }
-.particle:nth-child(4) { left: 50%; top: 60%; animation-delay: 3s; }
-.particle:nth-child(5) { left: 10%; top: 20%; animation-delay: 0.5s; }
+@keyframes floatBot {
+  0% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+  50% { transform: translateY(-30px) translateX(20px); opacity: 1; }
+  100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+}
 
-/* Responsive */
+/* Add bots automatically */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+body::before {
+  top: 20%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--primary-color) 25%, transparent 70%);
+  animation: floatBot 5s infinite ease-in-out alternate;
+}
+
+body::after {
+  bottom: 15%;
+  right: 20%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--secondary-color) 25%, transparent 70%);
+  animation: floatBot 8s infinite ease-in-out alternate;
+}
+
+/* Extra floating bot elements */
+.floating-bot-1 {
+  top: 30%;
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.floating-bot-2 {
+  bottom: 10%;
+  left: 40%;
+  animation-delay: 2s;
+}
+
+.floating-bot-3 {
+  top: 60%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+/* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    padding: 1rem;
   }
-  nav a {
-    display: inline-block;
-    margin: 0.5rem;
-  }
-  .card-container {
+
+  nav ul {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+  }
+
+  section {
+    padding: 3rem 5%;
   }
 }
