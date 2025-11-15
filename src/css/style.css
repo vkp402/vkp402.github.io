@@ -205,18 +205,16 @@ footer {
 
 .contact-icons {
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  gap: 15px;
   margin-top: 20px;
 }
 
-.github-icon {
-  width: 50px;
-  height: 50px;
-  transition: transform 0.3s, filter 0.3s;
+.icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s;
 }
 
-.github-icon:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 10px #00ffff);
+.icon:hover {
+  transform: scale(1.1);
 }
